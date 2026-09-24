@@ -1,34 +1,30 @@
-import random
-
-def get_agent_action(current_room_status):
-    if current_room_status == 'dirty':
-        return 'clean'
+def simple_reflex_agent(location, status):
+    if status == "Dirty":
+        return "Suck"
+    elif location == "A":
+        return "Move Right"
     else:
-        return 'move'
+        return "Move Left"
 
-def simulate_minimal_vacuum():
-    rooms = {'A': 'dirty', 'B': 'dirty'}
-    agent_current_location = 'A'
+def run_simple_reflex():
+    print("SIMPLE REFLEX AGENT")
+    location = "A"
+    environment = {
+        "A": "Dirty",
+        "B": "Dirty"
+    }
+    for step in range(4):
+        status = environment[location]
+        print(f"\nStep {step + 1}")
+        print(f"Location: {location}")
+        print(f"Status: {status}")
+        action = simple_reflex_agent(location, status)
+        print(f"Action: {action}")
+        if action == "Suck":
+            environment[location] = "Clean"
+        elif action == "Move Right":
+            location = "B"
+        elif action == "Move Left":
+            location = "A"
 
-    print(f"Initial State: Rooms={rooms}, Agent at={agent_current_location}")
-
-    for step in range(1, 6):
-        print(f"\n--- Step {step} ---")
-        print(f"Agent at {agent_current_location}, status is {rooms[agent_current_location]}")
-
-        action = get_agent_action(rooms[agent_current_location])
-        print(f"Agent decides to: {action.upper()}")
-
-        if action == 'clean':
-            rooms[agent_current_location] = 'clean'
-            print(f"Room {agent_current_location} is now {rooms[agent_current_location]}")
-        elif action == 'move':
-            if agent_current_location == 'A':
-                agent_current_location = 'B'
-            else:
-                agent_current_location = 'A'
-            print(f"Agent moved to {agent_current_location}")
-
-    print(f"\nFinal State: Rooms={rooms}")
-
-simulate_minimal_vacuum()
+run_simple_reflex()
