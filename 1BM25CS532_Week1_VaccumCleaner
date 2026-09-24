@@ -1,0 +1,34 @@
+import random
+
+def get_agent_action(current_room_status):
+    if current_room_status == 'dirty':
+        return 'clean'
+    else:
+        return 'move'
+
+def simulate_minimal_vacuum():
+    rooms = {'A': 'dirty', 'B': 'dirty'}
+    agent_current_location = 'A'
+
+    print(f"Initial State: Rooms={rooms}, Agent at={agent_current_location}")
+
+    for step in range(1, 6):
+        print(f"\n--- Step {step} ---")
+        print(f"Agent at {agent_current_location}, status is {rooms[agent_current_location]}")
+
+        action = get_agent_action(rooms[agent_current_location])
+        print(f"Agent decides to: {action.upper()}")
+
+        if action == 'clean':
+            rooms[agent_current_location] = 'clean'
+            print(f"Room {agent_current_location} is now {rooms[agent_current_location]}")
+        elif action == 'move':
+            if agent_current_location == 'A':
+                agent_current_location = 'B'
+            else:
+                agent_current_location = 'A'
+            print(f"Agent moved to {agent_current_location}")
+
+    print(f"\nFinal State: Rooms={rooms}")
+
+simulate_minimal_vacuum()
