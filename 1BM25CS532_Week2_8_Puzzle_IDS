@@ -1,0 +1,73 @@
+initial_state = (
+    (1, 2, 3),
+    (4, 0, 6),
+    (7, 5, 8)
+)
+
+goal_state = (
+    (1, 2, 3),
+    (4, 5, 6),
+    (7, 8, 0)
+)
+
+def print_puzzle(state):
+    for row in state:
+        print(" ".join(map(str, row)))
+    print()
+
+def get_moves(state):
+    r, c = [(r, c) for r in range(3)
+            for c in range(3) if state[r][c] == 0][0]
+
+    moves = [(r-1,c), (r+1,c), (r,c-1), (r,c+1)]
+
+    for nr, nc in moves:
+        if 0 <= nr < 3 and 0 <= nc < 3:
+            new_state = [list(row) for row in state]
+            new_state[r][c], new_state[nr][nc] = \
+                new_state[nr][nc], new_state[r][c]
+
+            yield tuple(tuple(row) for row in new_state)
+
+def depth_limited_search(state, goal, depth, path):
+    if state == goal:
+        return path
+
+    if depth == 0:
+        return None
+
+    for new_state in get_moves(state):
+        if new_state not in path:
+            result = depth_limited_search(
+                new_state, goal, depth - 1, path + [new_state]
+            )
+
+            if result:
+                return result
+
+    return None
+
+def solve_8_puzzle_ids(start, goal):
+    depth = 0
+
+    while True:
+        result = depth_limited_search(start, goal, depth, [start])
+
+        if result:
+            return result
+
+        depth += 1
+
+
+print("Initial State:")
+print_puzzle(initial_state)
+print("Goal State:")
+print_puzzle(goal_state)
+
+solution_path = solve_8_puzzle_ids(initial_state, goal_state)
+
+print(f"Solution Found in {len(solution_path) - 1} moves.\n")
+
+for i, state in enumerate(solution_path):
+    print(f"Step {i}:")
+    print_puzzle(state)
