@@ -1,0 +1,30 @@
+
+initial_state = (
+    (1, 2, 3),
+    (0, 4, 6),
+    (7, 5, 8)
+)
+
+goal_state = (
+    (1, 2, 3),
+    (4, 5, 6),
+    (7, 8, 0)
+)
+
+def print_puzzle(state):
+    for row in state: print(" ".join(map(str, row)))
+    print()
+
+print("Initial State:")
+print_puzzle(initial_state)
+
+print("Goal State:")
+print_puzzle(goal_state)
+
+solution_path = solve_8_puzzle_dfs(initial_state, goal_state)
+
+if solution_path:
+    print(f"Solution Found in {len(solution_path) - 1} moves.")
+ 
+else:
+    print("No solution found for this puzzle.")
