@@ -28,3 +28,31 @@ def run_simple_reflex():
             location = "A"
 
 run_simple_reflex()
+
+
+#output
+
+"""
+SIMPLE REFLEX AGENT
+
+Step 1
+Location: A
+Status: Dirty
+Action: Suck
+
+Step 2
+Location: A
+Status: Clean
+Action: Move Right
+
+Step 3
+Location: B
+Status: Dirty
+Action: Suck
+
+Step 4
+Location: B
+Status: Clean
+Action: Move Left
+
+"""
