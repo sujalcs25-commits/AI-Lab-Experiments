@@ -28,3 +28,19 @@ if solution_path:
  
 else:
     print("No solution found for this puzzle.")
+
+#output
+
+"""
+(1, 2, 3)
+(4, 0, 6)
+(7, 5, 8)
+
+(1, 2, 3)
+(4, 5, 6)
+(7, 0, 8)
+
+(1, 2, 3)
+(4, 5, 6)
+(7, 8, 0)
+"""
