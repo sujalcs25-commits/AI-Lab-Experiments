@@ -71,3 +71,34 @@ print(f"Solution Found in {len(solution_path) - 1} moves.\n")
 for i, state in enumerate(solution_path):
     print(f"Step {i}:")
     print_puzzle(state)
+
+
+#output
+"""
+Initial State:
+1 2 3
+4 0 6
+7 5 8
+
+Goal State:
+1 2 3
+4 5 6
+7 8 0
+
+Solution Found in 2 moves.
+
+Step 0:
+1 2 3
+4 0 6
+7 5 8
+
+Step 1:
+1 2 3
+4 5 6
+7 0 8
+
+Step 2:
+1 2 3
+4 5 6
+7 8 0
+"""
